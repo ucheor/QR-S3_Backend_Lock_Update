@@ -50,6 +50,17 @@ terraform {
 ## Steps:
 To demonstrate, we will create a tradititional AWS S3 lock with DynamoDB, then after initializing the backend using the traditional method, we will go ahead and switch to the native S3 bucket locking. Feel free to skip to the S3 Native locking if you already have a traditional backend resource you want to practice on. Remember to back up files when working on critical files and resources. Always test before implementing!
 
+In this example, we will be using terraform code that created an AWS key pair. You might want to create a folder to organize your files. 
+
+Create the folder **backend**
+
+```mkdir backend```
+
+Create terraform files inside your new folder
+
+```cd backend```
+
+```touch backend.tf provider.tf keypair.tf variable.tf output.tf```
 
 ## Key Benefits of S3 Native Locking
 

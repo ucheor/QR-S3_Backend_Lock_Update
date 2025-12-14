@@ -1,7 +1,6 @@
 *terraform*
 *.pem
 *terraform
-Documentation
 
 # Local .terraform directories
 .terraform/
