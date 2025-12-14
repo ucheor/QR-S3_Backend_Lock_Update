@@ -67,12 +67,82 @@ cd backend
 ```
 touch backend.tf provider.tf keypair.tf variable.tf output.tf
 ```
+Add terraform sode to created files
 
 ```
-This is the text that users can copy with one click.
-It can span multiple lines.
+cat <<EOF > keypair.tf
+resource "tls_private_key" "magnolia-key" {
+  algorithm = "RSA"
+  rsa_bits = 2048
+}
+
+resource "aws_key_pair" "magnolia-key-public" {
+  key_name = var.key_name
+  public_key = tls_private_key.magnolia-key.public_key_openssh
+}
+
+resource "local_file" "magnolia-key-private" {
+  filename = "${var.key_name}.pem"
+  file_permission = 700
+  content = tls_private_key.magnolia-key.private_key_pem
+}
+EOF
+
+cat <<EOF > provider.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "aws" {
+  profile = var.profile
+  region  = var.region
+}
+EOF
+
+cat <<EOF > output.tf
+output "key_name" {
+  value = aws_key_pair.magnolia-key-public.key_name
+}
+EOF
+
+cat <<EOF > variable.tf
+variable "region" {
+  default = "us-east-1"
+}
+
+variable "profile" {
+  default = "default"
+}
+
+variable "key_name" {
+  default = "magnolia-radish"
+}
+
+EOF
+
 ```
 
+To create a backend block file with the traditional method (for practice)
+
+```
+touch old_backend.tf
+
+cat <<EOF > old_backend.tf
+terraform {
+  backend "s3" {
+    bucket         = "magnolia-radish"
+    key            = "staging/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "magnolia"
+  }
+}
+EOF
+```
 
 ## Key Benefits of S3 Native Locking
 
