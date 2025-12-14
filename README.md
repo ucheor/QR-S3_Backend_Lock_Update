@@ -37,6 +37,9 @@ In this quick refresh, we go over steps to migrate existing terraform backend sc
 S3 introduced native state locking support that eliminates the need for DynamoDB entirely. Instead of using a separate database, S3 leverages its own native object locking mechanisms to prevent concurrent state modifications.
 
 The new configuration is refreshingly simple:
+
+![S3 bucket backend](images/backend.tf.png)
+
 ```
 terraform {
   backend "s3" {
