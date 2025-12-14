@@ -211,19 +211,18 @@ This command tells Terraform that the backend configuration has changed and that
 
 ![terraform init migrate state](images/terraform%20migrate%20state.png)
 
+The lock has now been switched to Native S3 locking.
 
 ```
 terraform apply
 ```
 "yes" to agree
 
-The lock has now been switched to Native S3 locking
 
 To confirm, while running a Terraform apply, you can have a look at the AWS S3 bucket folder and should see the lock file appear briefly while the code is being applied.
 
 ![verify S3 backend lock](images/s3%20bucket%20lock%20verification.png)
 
-It is safe to go ahead and decommision the DynamoDB table.
 
 ## Key Benefits of S3 Native Locking
 
