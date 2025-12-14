@@ -207,7 +207,7 @@ To configure terraform to switch to the new state file, we have to re-initialize
 ```
 terraform init -migrate-state
 ```
-
+THis instructs Terraform that there has been a change in the state file configuration
 
 ![Terraform init migrate state](images/terraform%20migrate%20state.png)
 
