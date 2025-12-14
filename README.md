@@ -40,6 +40,8 @@ The new configuration is refreshingly simple:
 
 ![S3 bucket backend](images/backend.tf.png)
 
+Here is the code:
+
 ```
 terraform {
   backend "s3" {
