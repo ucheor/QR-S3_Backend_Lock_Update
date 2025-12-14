@@ -4,9 +4,9 @@ If you've been managing cloud infrastructure with Terraform, you're probably fam
 
 ## Why is State Management important in Terraform?
 
-The state file captures a record of resources, tracks resources  and enables Terraform to manage deployed resources. It is important to store the state file in a safe place preferably with a functionalty to enables versioning. This way, anytime Terraform needs to update or configure resources, it has a reference for what is already deplyed (current state) and the desired/requested state.
+The state file captures a record of resources, tracks resources  and enables Terraform to manage deployed resources. It is important to store the state file in a safe place preferably with a functionality to enables versioning. This way, anytime Terraform needs to update or configure resources, it has a reference for what is already deployed (current state) and the desired/requested state.
 
-Storing terraform in a centralized location enables team access to the files and improves collaboration. While this is desirable, what happens when multiple team members are woring on the same file at the same time? If this happens, there is a chance of infrastructure deployment conflicts. This is why it is preferable lock the state file anytime it is in use.
+Storing terraform in a centralized location enables team access to the files and improves collaboration. While this is desirable, what happens when multiple team members are working on the same file at the same time? If this happens, there is a chance of infrastructure deployment conflicts. This is why it is preferable lock the state file anytime it is in use.
 
 
 ## The Traditional Approach: S3 + DynamoDB
@@ -144,12 +144,12 @@ variable "key_name" {
 EOF
 
 ```
-This code will add a public portion of the keypair in your AWS account and download a private portion to your local file. Feel free to adjust the variable file as you see fit.
+These codes will add a public portion of the keypair in your AWS account and download a private portion to your local file. Feel free to adjust the variable file as you see fit.
 
 **Now, we have to create the S3 bucket and the DynamoDB table to use for state file locking.**
 Although Terraform can automate provision of resources in AWS, we have to first set up resources related to the backend before running Terraform. This is because the backend needs to be set up and initialized prior to resource creation stage.
 
-Create S3 bucket, enable versioning and block public access. Versioning is important for lockfiles to work correctly. Update backend code with unique S3 bucket name.
+Create S3 bucket, enable versioning and block public access. Versioning is important for lock files to work correctly. Update backend code with unique S3 bucket name.
 
 ![Create S3 bucket](images/create%20s3%20bucket%201.png)
 
