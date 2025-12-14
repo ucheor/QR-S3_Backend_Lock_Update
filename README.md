@@ -207,7 +207,7 @@ To configure terraform to switch to the new state file, we have to re-initialize
 ```
 terraform init -migrate-state
 ```
-THis instructs Terraform that there has been a change in the state file configuration
+This command tells Terraform that the backend configuration has changed and that it should migrate the existing state to the newly configured backend.
 
 ![Terraform init migrate state](images/terraform%20migrate%20state.png)
 
