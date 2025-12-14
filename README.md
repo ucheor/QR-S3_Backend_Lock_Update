@@ -67,7 +67,7 @@ cd backend
 ```
 touch backend.tf provider.tf keypair.tf variable.tf output.tf
 ```
-Add terraform sode to created files
+Add terraform code to keypair.tf, provider.tf, output.tf and variable.tf
 
 ```
 cat <<EOF > keypair.tf
@@ -126,6 +126,7 @@ variable "key_name" {
 EOF
 
 ```
+
 
 To create a backend block file with the traditional method (for practice)
 
