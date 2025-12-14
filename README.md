@@ -164,7 +164,7 @@ Create DynamoDB table "magnolia" . Partition key is **LockID**
 ![DynamoDB table](images/create%20dynamoDB%20table.png)
 
 
-To create a backend block file with the traditional method (for practice) 
+To create a backend block file with the traditional method (for practice). Remember to update bucket name to your S3 bucket name. S3 folder is used to seperate different environments. Confirm that you have the right and matching folder on the "key" value.
 
 ```
 touch old_backend.tf
@@ -223,12 +223,12 @@ Remember to update bucket name and double check key/path as required.
 To configure terraform to switch to the new state file, we have to re-initialize the backend
 
 ```
-terraform init -migrate-state
+terraform init -reconfigure
 ```
 
-This command tells Terraform that the backend configuration has changed and that it should migrate the existing state to the newly configured backend. The lock has now been switched to Native S3 locking.
+This command tells Terraform that the backend configuration has changed so it can switch to the new configuration. The lock has now been switched to Native S3 locking.
 
-![Terraform init migrate state](images/migrate_state.png)
+![Terraform init reconfigure](images/reconfigure.png)
 
 ```
 terraform apply
@@ -240,6 +240,11 @@ To confirm, while running a Terraform apply, you can have a look at the AWS S3 b
 
 ![verify S3 backend lock](images/s3%20bucket%20lock%20verification.png)
 
+```
+# to clean up and delete created resources 
+terraform destroy
+```
+"yes" to agree
 
 ## Key Benefits of S3 Native Locking
 
