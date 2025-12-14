@@ -2,6 +2,8 @@
 *.pem
 *terraform
 *.sh
+*extra
+
 
 # Local .terraform directories
 .terraform/
