@@ -12,7 +12,7 @@ Storing terraform in a centralized location enables team access to the files and
 ## The Traditional Approach: S3 + DynamoDB
 
 For years, the standard Terraform backend configuration looked something like this:
-
+```
 terraform {
   backend "s3" {
     bucket         = "magnolia-radish"
@@ -21,7 +21,7 @@ terraform {
     dynamodb_table = "magnolia"
   }
 }
-
+```
 This approach comes with some overhead:
 - **Extra infrastructure to maintain**: You need to provision and manage a DynamoDB table
 - **Additional costs**: Even with on-demand pricing, you're paying for two services - S3 bucket and DynamoDB table
